@@ -2,7 +2,7 @@ class Api::ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :destroy]
 
   def index
-    render json: Item.all
+    render json: Item.order("created_at")
   end
 
   def show
@@ -19,7 +19,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    @item.update(complete: !item.complete)
+    @item.update(complete: !@item.complete)
     render json: @item
   end
 
